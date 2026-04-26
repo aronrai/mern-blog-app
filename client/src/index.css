@@ -1,0 +1,37 @@
+@import "tailwindcss";
+@import "@fontsource-variable/merriweather/wght.css";
+@import "@fontsource-variable/montserrat/wght.css";
+@import "@fontsource/montez";
+@import "@fontsource-variable/playfair-display/wght.css";
+html,
+body {
+  scrollbar-width: none;
+}
+
+html::-webkit-scrollbar,
+body::-webkit-scrollbar {
+  display: none;
+}
+
+@theme {
+  --font-heading: "Playfair Display Variable", serif;
+  --font-sans: "Montserrat Variable", sans-serif;
+  --font-montez: "Montez", cursive;
+}
+
+.ql-toolbar.ql-snow {
+  border: none !important;
+  border-bottom: 0 !important;
+  padding: 0 !important;
+  margin-bottom: 8px;
+}
+
+.ql-container.ql-snow {
+  border: none !important;
+}
+
+.ql-editor {
+  min-height: 200px;
+  padding: 0 !important;
+  font-size: 1rem;
+}
