@@ -17,7 +17,7 @@ const Blog = () => {
   if (singleBlogLoading) {
     return (
       <section className="flex justify-center items-center min-h-[calc(100vh-96px)]">
-        <p className="text-gray-500 font-serif tracking-widest uppercase text-sm animate-pulse">
+        <p className="text-gray-500 font-heading tracking-widest uppercase text-sm animate-pulse">
           Loading...
         </p>
       </section>
@@ -64,7 +64,7 @@ const Blog = () => {
       />
       <div
         dangerouslySetInnerHTML={{ __html: blog.content }}
-        className="[&_p]:text-sm [&_p]:text-gray-600 [&_h1]:font-heading [&_h2]:font-heading [&_h3]:font-heading flex flex-col"
+        className="[&_p]:text-sm [&_p]:text-gray-600 [&_h1]:font-heading [&_h2]:font-heading [&_h3]:font-heading **:wrap-break-word flex flex-col gap-4 w-full"
       />
       <p>~ {blog.authorId.name}</p>
     </section>

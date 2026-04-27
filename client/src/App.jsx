@@ -15,6 +15,7 @@ import Blog from "./pages/Blog";
 import About from "./pages/About";
 import SCrollToTop from "./components/ScrollToTop";
 import VerifyAccount from "./pages/VerifyAccount";
+import EditBlog from "./pages/EditBlog";
 
 const App = () => {
   const fetchUser = useAuthStore((state) => state.fetchUser);
@@ -55,7 +56,8 @@ const App = () => {
             />
             <Route element={<ProtectedRoutes />}>
               <Route path="/my-blogs" element={<MyBlogs />} />
-              <Route path="/write-blog/:slug?" element={<WriteBlog />} />
+              <Route path="/write-blog" element={<WriteBlog />} />
+              <Route path="/edit-blog/:slug" element={<EditBlog />} />
               <Route path="/profile" element={<Profile />} />
             </Route>
             <Route path="*" element={<PageNotFound />} />

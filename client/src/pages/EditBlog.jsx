@@ -2,19 +2,42 @@ import { useEffect, useState } from "react";
 import { SiVerizon } from "react-icons/si";
 import Editor from "../components/Editor";
 import { Helmet } from "react-helmet-async";
-import Button from "../components/Button";
+import { useParams } from "react-router-dom";
 import api from "../api/axiosInstance";
+import Button from "../components/Button";
 
-const WriteBlog = () => {
+const EditBlog = () => {
+  const { slug } = useParams();
+
   const [blogData, setBlogData] = useState({
     title: "",
     content: "",
     tags: "",
     image: null,
+    _id: "",
   });
-  const [publishing, setPublishing] = useState(false);
+  const [updating, setUpdating] = useState(false);
   const [message, setMessage] = useState(null);
   const [error, setError] = useState(false);
+
+  useEffect(() => {
+    const fetchBlog = async () => {
+      try {
+        const response = await api.get(`/blogs/${slug}`);
+        const data = response.data;
+        setBlogData({
+          title: data.data.title,
+          content: data.data.content,
+          tags: data.data.tags,
+          image: "",
+          _id: data.data._id,
+        });
+      } catch (err) {
+        console.error(`Error: ${err.response.data.message}`);
+      }
+    };
+    fetchBlog();
+  }, [slug]);
 
   const handleBlogDataChange = (e) => {
     const { name, value, type, files } = e.target;
@@ -26,12 +49,14 @@ const WriteBlog = () => {
       setBlogData((b) => ({ ...b, [name]: value }));
     }
   };
+
   const handleQuillChange = (value) => {
     setBlogData((b) => ({ ...b, content: value }));
   };
 
-  const publishBlog = async () => {
+  const updateBlog = async () => {
     try {
+      const token = localStorage.getItem("token");
       const formData = new FormData();
       formData.append("title", blogData.title);
       formData.append("content", blogData.content);
@@ -39,9 +64,8 @@ const WriteBlog = () => {
       if (blogData.image) {
         formData.append("image", blogData.image);
       }
-      const token = localStorage.getItem("token");
-      setPublishing(true);
-      const response = await api.post("/blogs", formData, {
+      setUpdating(true);
+      const response = await api.put(`/blogs/${blogData._id}`, formData, {
         headers: {
           Authorization: `Bearer ${token}`,
           "Content-Type": "multipart/form-data",
@@ -61,18 +85,9 @@ const WriteBlog = () => {
       setMessage(err.response.data.message);
       console.error(`Error: ${err.response.data.message}`);
     } finally {
-      setPublishing(false);
+      setUpdating(false);
     }
   };
-
-  useEffect(() => {
-    if (message) {
-      const timer = setTimeout(() => {
-        setMessage(null);
-      }, 3000);
-      return () => clearInterval(timer);
-    }
-  }, [message]);
 
   return (
     <section className="px-4 sm:px-8 md:px-32 lg:px-48 py-16 flex flex-col gap-8 min-h-[calc(100vh-96px)]">
@@ -144,11 +159,11 @@ const WriteBlog = () => {
         </p>
       )}
       <Button
-        button={publishing ? "Publishing..." : "Publish"}
-        onclick={publishBlog}
-        disabled={publishing}
+        button={updating ? "Updating..." : "Update"}
+        onclick={updateBlog}
+        disabled={updating}
       />
     </section>
   );
 };
-export default WriteBlog;
+export default EditBlog;
