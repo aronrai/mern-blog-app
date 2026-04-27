@@ -23,7 +23,7 @@ const globalErrorController = (err, req, res, next) => {
     console.log(err);
     res.status(err.statusCode || 500).json({
       success: false,
-      message: "Something went erong",
+      message: "Something went wrong",
       status: "error",
     });
   }
