@@ -10,7 +10,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const sendVerificationEmail = async (name, email, verificationToken) => {
-  const verifyUrl = `http://localhost:5173/verify/${verificationToken}`;
+  const verifyUrl = `https://blogspot-29yc.onrender.com/verify/${verificationToken}`;
   const mailOptions = {
     from: `"Blogspot" <${process.env.NODEMAILER_USER}>`,
     to: email,
