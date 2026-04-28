@@ -7,7 +7,6 @@ const jwt = require("jsonwebtoken");
 const { sendVerificationEmail } = require("../utils/sendEmail");
 require("dotenv").config();
 
-// Sign Up
 const signUp = async (req, res, next) => {
   try {
     const { error, value } = signUpSchema.validate(req.body, {
@@ -51,7 +50,6 @@ const signUp = async (req, res, next) => {
   }
 };
 
-// Login
 const login = async (req, res, next) => {
   try {
     const { error, value } = loginSchema.validate(req.body, {
@@ -93,7 +91,6 @@ const login = async (req, res, next) => {
   }
 };
 
-// Get me
 const getMe = async (req, res, next) => {
   try {
     const id = req.userId;
@@ -110,7 +107,6 @@ const getMe = async (req, res, next) => {
   }
 };
 
-// Verify user
 const verifyUser = async (req, res, next) => {
   try {
     const { verificationToken } = req.params;

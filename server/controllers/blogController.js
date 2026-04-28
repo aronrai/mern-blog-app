@@ -4,7 +4,6 @@ const cloudinary = require("../config/cloudinary");
 const CustomError = require("../utils/customError");
 const fs = require("fs");
 
-// create
 const createBlog = async (req, res, next) => {
   try {
     if (req.body.tags || typeof req.body.tags === "string") {
@@ -49,7 +48,6 @@ const createBlog = async (req, res, next) => {
   }
 };
 
-// read
 const getAllBlogs = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1;
@@ -107,7 +105,6 @@ const getBlog = async (req, res, next) => {
   }
 };
 
-// update
 const updateBlog = async (req, res, next) => {
   try {
     const { id } = req.params;
@@ -181,7 +178,6 @@ const updateBlog = async (req, res, next) => {
   }
 };
 
-// delete
 const deleteBlog = async (req, res, next) => {
   try {
     const { id } = req.params;

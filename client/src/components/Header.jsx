@@ -85,7 +85,7 @@ const Header = () => {
           )}
         </ul>
         <ul
-          className={`md:hidden fixed text-sm bg-gray-100 h-screen w-75 pl-4 flex flex-col gap-4 top-0 ${isOpen ? "right-0" : "-right-75"} transition-all duration-150 ease-in`}
+          className={`md:hidden fixed text-sm bg-gray-100 h-screen w-[65vw] pl-4 flex flex-col gap-2 top-0 ${isOpen ? "right-0" : "-right-[65vw]"} transition-all duration-150 ease-in`}
         >
           <li className="h-16 flex justify-end items-center mr-4">
             <button
