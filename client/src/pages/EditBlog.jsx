@@ -94,11 +94,10 @@ const EditBlog = () => {
       <Helmet>
         <title>Blogspot &bull; Write</title>
       </Helmet>
-      <h1 className="text-4xl font-heading font-bold mb-4">
-        What's on your mind?
-      </h1>
-      <p className="text-lg md:text-2xl font-montez">
-        Start writing your story below. Your ideas deserve to be seen.
+      <h1 className="text-4xl font-heading font-bold mb-4">Refine Your Post</h1>
+      <p className="text-xl sm:text-2xl font-montez">
+        Fine-tune your message and perfect your story before sharing it with the
+        world again.
       </p>
       <div className="flex flex-col gap-2">
         <label htmlFor="title" className="text-lg font-heading font-bold">

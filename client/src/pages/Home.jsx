@@ -11,7 +11,7 @@ const Home = () => {
       <h1 className="text-5xl md:text-7xl font-heading font-black">
         Stay curious<span className="text-blue-500">.</span>
       </h1>
-      <p className="text-lg md:text-2xl font-montez">
+      <p className="text-xl sm:text-2xl font-montez">
         The world is full of stories waiting to be told. Grab a coffee, stay a
         while, and find something that sparks your imagination.
       </p>

@@ -80,10 +80,11 @@ const WriteBlog = () => {
         <title>Blogspot &bull; Write</title>
       </Helmet>
       <h1 className="text-4xl font-heading font-bold mb-4">
-        What's on your mind?
+        Unleash Your Narrative
       </h1>
-      <p className="text-lg md:text-2xl font-montez">
-        Start writing your story below. Your ideas deserve to be seen.
+      <p className="text-xl sm:text-2xl font-montez">
+        Transform your thoughts into a masterpiece. The world is waiting for
+        your unique story.
       </p>
       <div className="flex flex-col gap-2">
         <label htmlFor="title" className="text-lg font-heading font-bold">

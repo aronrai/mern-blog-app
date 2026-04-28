@@ -9,16 +9,16 @@ const About = () => {
         </Helmet>
         <h1 className="text-4xl font-heading font-bold">About Blogspot</h1>
         <p className="text-sm text-gray-600">
-          Our Blogspot web app is a dynamic, all-in-one community designed for
-          both passionate storytellers and curious readers to connect through
-          the power of words. It offers a seamless, intuitive interface where
-          users can easily publish their own unique perspectives while exploring
-          a diverse world of content curated by others. Whether you're looking
-          to build a digital legacy as a writer or discover fresh insights as a
+          Blogspot is a dynamic, all-in-one community designed for both
+          passionate storytellers and curious readers to connect through the
+          power of words. It offers a seamless, intuitive interface where users
+          can easily publish their own unique perspectives while exploring a
+          diverse world of content curated by others. Whether you're looking to
+          build a digital legacy as a writer or discover fresh insights as a
           reader, the platform bridges the gap between creation and discovery in
           a single, streamlined experience.
         </p>
-        <h2 className="text-2xl font-heading font-bold">
+        <h2 className="text-2xl font-heading font-medium">
           Technical Journey & Learning Objectives
         </h2>
         <p className="text-sm text-gray-600">
@@ -94,7 +94,7 @@ const About = () => {
             href="https://github.com/aronrai/mern-blog-app"
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-blue-500 px-8 py-2 text-sm font-medium hover:bg-blue-500 hover:text-white transition-colors duration-300 mr-auto m-4 rounded-sm"
+            className="border border-black px-4 py-2 text-sm font-medium hover:bg-black hover:text-white transition-colors duration-300 mr-auto m-4 rounded-sm"
           >
             View the Source Code
           </a>
