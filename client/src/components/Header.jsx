@@ -5,6 +5,7 @@ import useAuthStore from "../store/userAuthStore";
 const Header = () => {
   const [currentPage, setCurrentPage] = useState(null);
   const user = useAuthStore((state) => state.user);
+  const userLoading = useAuthStore((state) => state.userLoading);
   const [isOpen, setIsOpen] = useState(false);
   const toggleMenu = () => {
     setIsOpen(!isOpen);
@@ -15,9 +16,7 @@ const Header = () => {
   }, [pathname]);
   return (
     <header className="flex justify-between items-center h-16 bg-white mx-4 sm:mx-8 md:mx-16 border-b border-gray-200 sticky top-0 z-100">
-      <Link to="/" className="text-2xl font-heading font-bold">
-        Blogspot
-      </Link>
+      <div className="text-2xl font-heading font-bold">Blogspot</div>
       <nav>
         <ul className="text-sm text-gray-700 hidden md:flex items-center gap-4">
           <li className="flex flex-col group">
@@ -63,7 +62,7 @@ const Header = () => {
                 </Link>
               </li>
             </>
-          ) : (
+          ) : userLoading ? null : (
             <>
               <li>
                 <Link
