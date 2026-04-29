@@ -35,13 +35,11 @@ const VerifyAccount = () => {
   return (
     <section className="flex justify-center px-4 py-16 sm:px-8 md:px-32 lg:px-48 items-center min-h-[calc(100vh-96px)]">
       {verifying ? (
-        <p className="text-sm text-gray-500 tracking-wide animate-bounce">
+        <p className="text-sm text-gray-500 tracking-widest animate-bounce">
           Verifying your account, Please Wait...
         </p>
       ) : (
-        <p
-          className={`text-md ${err ? "text-red-500" : "text-blue-500"} tracking-wide`}
-        >
+        <p className={`text-sm ${err ? "text-red-500" : "text-blue-500"}`}>
           {message}
         </p>
       )}

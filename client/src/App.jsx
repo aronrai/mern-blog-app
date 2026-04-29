@@ -16,28 +16,18 @@ import About from "./pages/About";
 import SCrollToTop from "./components/ScrollToTop";
 import VerifyAccount from "./pages/VerifyAccount";
 import EditBlog from "./pages/EditBlog";
+import Loading from "./components/Loading";
 
 const App = () => {
   const fetchUser = useAuthStore((state) => state.fetchUser);
-  const userLoading = useAuthStore((state) => state.userLoading);
   const page = useBlogStore((state) => state.page);
   const fetchBlogs = useBlogStore((state) => state.fetchBlogs);
-  const blogsLoading = useBlogStore((state) => state.blogsLoading);
   useEffect(() => {
     fetchUser();
   }, [fetchUser]);
   useEffect(() => {
     fetchBlogs();
   }, [fetchBlogs, page]);
-  if (userLoading || blogsLoading) {
-    return (
-      <div className="min-h-screen flex justify-center items-center">
-        <p className="text-gray-500 font-serif tracking-widest uppercase text-sm animate-pulse">
-          Loading...
-        </p>
-      </div>
-    );
-  }
   return (
     <>
       <SCrollToTop />
@@ -47,7 +37,7 @@ const App = () => {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
-            <Route path="/blogs/:slug" element={<Blog />} />
+            <Route path="/:slug" element={<Blog />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
             <Route

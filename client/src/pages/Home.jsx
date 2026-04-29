@@ -1,5 +1,6 @@
 import useBlogStore from "../store/useBlogStore";
 import BlogCard from "../components/BlogCard";
+import Loading from "../components/Loading";
 
 const Home = () => {
   const allBlogs = useBlogStore((state) => state.allBlogs);
@@ -17,9 +18,7 @@ const Home = () => {
       </p>
       {allBlogs.length === 0 && allBlogsLoading ? (
         <div className="text-center">
-          <p className="text-gray-500 font-heading tracking-widest uppercase text-sm animate-pulse">
-            Loading...
-          </p>
+          <Loading />
         </div>
       ) : (
         <div className="flex flex-col gap-12">
@@ -30,10 +29,10 @@ const Home = () => {
       )}
       {hasMore && (
         <button
-          className="text-sm text-center font-medium cursor-pointer"
+          className="text-sm font-heading font-bold underline mx-auto cursor-pointer"
           onClick={pageIncrement}
         >
-          Load more...
+          Load more
         </button>
       )}
     </section>

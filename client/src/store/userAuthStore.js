@@ -17,14 +17,11 @@ const useAuthStore = create((set) => ({
         },
       });
       const data = response.data;
-      if (!data.success) {
-        set({ error: data.message });
-        localStorage.removeItem("token");
-      }
       set({ user: data.data });
     } catch (err) {
-      console.error(`Error: ${err.response.data.message}`);
       set({ error: err.response.data.message });
+      localStorage.removeItem("token");
+      console.error(`Error: ${err.response.data.message}`);
     } finally {
       set({ userLoading: false });
     }

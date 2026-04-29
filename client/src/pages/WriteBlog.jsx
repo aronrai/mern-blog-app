@@ -96,7 +96,7 @@ const WriteBlog = () => {
           name="title"
           id="title"
           required
-          className="text-sm px-4 py-2 outline-0 rounded-2xl border border-blue-500/50"
+          className="text-sm px-4 py-2 outline-0 rounded-sm border border-blue-500/50"
           value={blogData.title}
           onChange={handleBlogDataChange}
         />
@@ -105,7 +105,7 @@ const WriteBlog = () => {
         <label htmlFor="content" className="text-lg font-heading font-bold">
           Content
         </label>
-        <div className="text-sm px-4 py-2 outline-0 rounded-2xl border border-blue-500/50">
+        <div className="text-sm px-4 py-2 outline-0 rounded-sm border border-blue-500/50">
           <Editor value={blogData.content} onChange={handleQuillChange} />
         </div>
       </div>
@@ -118,7 +118,7 @@ const WriteBlog = () => {
           placeholder="tags seperated by ,"
           name="tags"
           id="tags"
-          className="text-sm px-4 py-2 outline-0 rounded-2xl border border-blue-500/50"
+          className="text-sm px-4 py-2 outline-0 rounded-sm border border-blue-500/50"
           value={blogData.tags}
           onChange={handleBlogDataChange}
         />
@@ -135,7 +135,7 @@ const WriteBlog = () => {
           placeholder="title"
           name="image"
           id="image"
-          className="text-sm px-4 py-2 outline-0 rounded-2xl border border-blue-500/50 w-fit"
+          className="text-sm px-4 py-2 outline-0 rounded-sm border border-blue-500/50 w-fit"
           onChange={handleBlogDataChange}
         />
       </div>

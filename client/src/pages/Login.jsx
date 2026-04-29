@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import api from "../api/axiosInstance";
 import useAuthStore from "../store/userAuthStore";
 import { Helmet } from "react-helmet-async";
+import Button from "../components/Button";
 
 const Login = () => {
   const setUser = useAuthStore((state) => state.setUser);
@@ -21,24 +22,23 @@ const Login = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      setLoggingIn(true);
       const response = await api.post("/users/login", formData);
       const data = response.data;
       console.log(data);
-      if (!data.success) {
-        setErrors(data.message);
-      }
       localStorage.setItem("token", data.token);
       setFormData({
         email: "",
         password: "",
       });
-      setLoggingIn(true);
       setErrors(null);
       setUser(data.data);
       navigate("/");
     } catch (err) {
       setErrors(err.response.data.message);
       console.log(err.response.data);
+    } finally {
+      setLoggingIn(false);
     }
   };
   return (
@@ -58,7 +58,8 @@ const Login = () => {
             placeholder="name@example.com"
             name="email"
             id="email"
-            className="text-sm px-4 py-1.5 outline-0 border border-blue-500/50 focus:shadow-sm shadow-blue-500/50 rounded-lg"
+            required
+            className="text-sm px-4 py-1.5 outline-0 border border-blue-500/50 focus:shadow-[0_0_2px] shadow-blue-500/50 rounded-sm"
             value={formData.email}
             onChange={handleFormDataChange}
           />
@@ -75,13 +76,17 @@ const Login = () => {
             placeholder="password"
             name="password"
             id="password"
-            className="text-sm px-4 py-1.5 outline-0 border border-blue-500/50 focus:shadow-sm shadow-blue-500/50 rounded-lg"
+            required
+            className="text-sm px-4 py-1.5 outline-0 border border-blue-500/50 focus:shadow-[0_0_2px] shadow-blue-500/50 rounded-sm"
             value={formData.password}
             onChange={handleFormDataChange}
           />
         </div>
-        <button className="text-md text-white font-heading bg-black hover:bg-black/90 active:bg-black px-4 py-1.5 outline-0 rounded-lg cursor-pointer">
-          {loggingIn ? "Logging in" : "Login"}
+        <button
+          className={`text-md text-white font-heading ${loggingIn ? "bg-black/85" : "bg-black hover:bg-black/85 active:bg-black"} px-4 py-1.5 outline-0 rounded-sm cursor-pointer`}
+          disabled={loggingIn}
+        >
+          {loggingIn ? "Logging in..." : "Login"}
         </button>
       </form>
       <p className="text-sm text-gray-600">

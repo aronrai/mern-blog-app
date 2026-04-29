@@ -57,9 +57,9 @@ const SignUp = () => {
       {errors && <p className="text-sm text-red-500">{errors}</p>}
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col gap-4 w-screen max-w-75"
+        className="flex flex-col gap-2 w-full max-w-75"
       >
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col gap-0.5">
           <label htmlFor="name" className="text-md font-heading font-medium">
             Name
           </label>
@@ -69,27 +69,27 @@ const SignUp = () => {
             name="name"
             id="name"
             required
-            className="text-sm px-4 py-1.5 outline-0 border border-blue-500/50 focus:shadow-sm shadow-blue-500/50 rounded-lg"
+            className="text-sm px-4 py-1.5 outline-0 border border-blue-500/50 focus:shadow-[0_0_2px] shadow-blue-500/50 rounded-sm"
             value={formData.name}
             onChange={handleFormDataChange}
           />
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col gap-0.5">
+          <label htmlFor="email" className="text-md font-heading font-medium">
+            Email
+          </label>
           <input
             type="email"
             placeholder="name@example.com"
             name="email"
             id="email"
             required
-            className="text-sm px-4 py-1.5 outline-0 border border-blue-500/50 focus:shadow-sm shadow-blue-500/50 rounded-lg"
+            className="text-sm px-4 py-1.5 outline-0 border border-blue-500/50 focus:shadow-[0_0_2px] shadow-blue-500/50 rounded-sm"
             value={formData.email}
             onChange={handleFormDataChange}
           />
-          <label htmlFor="email" className="text-md font-heading font-medium">
-            Email
-          </label>
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col gap-0.5">
           <label
             htmlFor="password"
             className="text-md font-heading font-medium"
@@ -102,31 +102,31 @@ const SignUp = () => {
             name="password"
             id="password"
             required
-            className="text-sm px-4 py-1.5 outline-0 border border-blue-500/50 focus:shadow-sm shadow-blue-500/50 rounded-lg"
+            className="text-sm px-4 py-1.5 outline-0 border border-blue-500/50 focus:shadow-[0_0_2px] shadow-blue-500/50 rounded-sm"
             value={formData.password}
             onChange={handleFormDataChange}
           />
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex flex-col gap-0.5">
+          <label
+            htmlFor="confirmPassword"
+            className="text-md font-heading font-medium"
+          >
+            Confirm password
+          </label>
           <input
             type="password"
             placeholder="confirm password"
             name="confirmPassword"
             id="confirmPassword"
             required
-            className="text-sm px-4 py-1.5 outline-0 border border-blue-500/50 focus:shadow-sm shadow-blue-500/50 rounded-lg"
+            className="text-sm px-4 py-1.5 outline-0 border border-blue-500/50 focus:shadow-[0_0_2px] shadow-blue-500/50 rounded-sm"
             value={formData.confirmPassword}
             onChange={handleFormDataChange}
           />
-          <label
-            htmlFor="confirmPassword"
-            className="text-md font-heading font-medium"
-          >
-            Confirm
-          </label>
         </div>
         <button
-          className="text-md text-white font-heading bg-black hover:bg-black/90 active:bg-black px-4 py-1.5 outline-0 border rounded-lg cursor-pointer disabled:bg-black/85"
+          className={`text-md text-white font-heading ${signingUp ? "bg-black/85" : "bg-black hover:bg-black/85 active:bg-black"} px-4 py-1.5 outline-0 rounded-sm cursor-pointer`}
           disabled={signingUp}
         >
           {signingUp ? "Signing Up..." : "Sign Up"}

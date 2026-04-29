@@ -48,13 +48,13 @@ const BlogCard = ({ blog, user }) => {
           {user && (
             <div className="hidden sm:flex items-center gap-2">
               <button
-                className="text-sm text-white bg-black px-2 py-0.5 rounded-2xl shadow-[0_2px_4px_black] hover:shadow-[0_4px_8px_#333] hover:-translate-y-0.5 cursor-pointer transition-all duration-150 ease-in-out"
+                className="text-sm text-white bg-black px-2 py-0.5 rounded-sm shadow-[0_2px_4px] shadow-black hover:shadow-[0_4px_8px] hover:-translate-y-0.5 cursor-pointer transition-all duration-150 ease-in-out"
                 onClick={() => navigate(`/edit-blog/${slug}`)}
               >
                 Edit
               </button>
               <button
-                className="text-sm text-white bg-red-600 px-2 py-0.5 rounded-2xl shadow-[0_2px_4px_black] hover:shadow-[0_4px_8px_#333] hover:-translate-y-0.5 active:shadow-none active:translate-y-0 cursor-pointer transition-all duration-150 ease-in-out disabled:bg-gray-500 disabled:hover:translate-y-0 disabled:hover:shadow-[0_2px_4px_black] disabled:active:shadow-[0_2px_4px_black]"
+                className={`text-sm text-white px-2 py-0.5 rounded-sm  ${deleting && deletingId === _id ? "bg-gray-500 shadow-[0_2px_4px] shadow-gray-500" : "bg-red-700 shadow-[0_2px_4px] shadow-black hover:shadow-[0_4px_8px] hover:-translate-y-0.5 active:shadow-[0_2px_4px] active:translate-y-0"} cursor-pointer transition-all duration-150 ease-in-out`}
                 onClick={() => deleteBlog(_id)}
                 disabled={deleting && deletingId === _id}
               >
@@ -71,13 +71,13 @@ const BlogCard = ({ blog, user }) => {
         {user && (
           <div className="flex items-center gap-2 sm:hidden mt-1">
             <button
-              className="text-sm text-white bg-black px-2 py-0.5 rounded-2xl shadow-[0_2px_4px_black] hover:shadow-[0_4px_8px_#333] hover:-translate-y-0.5 cursor-pointer transition-all duration-150 ease-in-out"
+              className="text-sm text-white bg-black px-2 py-0.5 rounded-sm shadow-[0_2px_4px] shadow-black hover:shadow-[0_4px_8px] hover:-translate-y-0.5 cursor-pointer transition-all duration-150 ease-in-out"
               onClick={() => navigate(`/edit-blog/${slug}`)}
             >
               Edit
             </button>
             <button
-              className="text-sm text-white bg-red-600 px-2 py-0.5 rounded-2xl shadow-[0_2px_4px_black] hover:shadow-[0_4px_8px_#333] hover:-translate-y-0.5 active:shadow-none active:translate-y-0 cursor-pointer transition-all duration-150 ease-in-out disabled:bg-gray-400 disabled:hover:translate-y-0 disabled:hover:shadow-[0_2px_4px_black] disabled:active:shadow-[0_2px_4px_black]"
+              className={`text-sm text-white px-2 py-0.5 rounded-sm  ${deleting && deletingId === _id ? "bg-gray-500 shadow-[0_2px_4px] shadow-gray-500" : "bg-red-700 shadow-[0_2px_4px] shadow-black hover:shadow-[0_4px_8px] hover:-translate-y-0.5 active:shadow-[0_2px_4px] active:translate-y-0"} cursor-pointer transition-all duration-150 ease-in-out`}
               onClick={() => deleteBlog(_id)}
               disabled={deleting && deletingId === _id}
             >
@@ -89,7 +89,7 @@ const BlogCard = ({ blog, user }) => {
     );
   }
   return (
-    <Link to={`/blogs/${slug}`}>
+    <Link to={`/${slug}`}>
       <section className="flex flex-col justify-between sm:flex-row gap-4 sm:border-b border-gray-300 pb-8">
         <div className="flex flex-col gap-2 group">
           <p className="flex items-center gap-2">
