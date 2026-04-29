@@ -96,7 +96,7 @@ const About = () => {
             rel="noopener noreferrer"
             className="border border-black px-4 py-2 text-sm font-medium hover:bg-black hover:text-white transition-colors duration-300 mr-auto m-4 rounded-sm"
           >
-            View the Source Code
+            Source Code
           </a>
         </div>
       </section>
