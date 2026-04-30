@@ -10,10 +10,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@fontsource-variable/merriweather": "^5.2.6",
     "@fontsource-variable/montserrat": "^5.2.8",
     "@fontsource-variable/playfair-display": "^5.2.8",
     "@fontsource/montez": "^5.2.8",
+    "@tailwindcss/typography": "^0.5.19",
     "@tailwindcss/vite": "^4.2.2",
     "axios": "^1.14.0",
     "motion": "^12.38.0",

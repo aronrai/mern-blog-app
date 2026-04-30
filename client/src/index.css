@@ -1,8 +1,8 @@
 @import "tailwindcss";
-@import "@fontsource-variable/merriweather/wght.css";
 @import "@fontsource-variable/montserrat/wght.css";
 @import "@fontsource/montez";
 @import "@fontsource-variable/playfair-display/wght.css";
+@plugin "@tailwindcss/typography";
 html,
 body {
   scrollbar-width: none;

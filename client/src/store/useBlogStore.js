@@ -50,6 +50,9 @@ const useBlogStore = create((set, get) => ({
   fetchMyBlogs: async () => {
     try {
       const token = localStorage.getItem("token");
+      if (!token) {
+        return;
+      }
       const response = await api.get("/blogs/my-blogs", {
         headers: {
           Authorization: `Bearer ${token}`,
