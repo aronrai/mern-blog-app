@@ -88,9 +88,9 @@ const Blog = () => {
           prose-strong:text-sm prose-strong:font-bold
           prose-a:text-sm prose-a:text-blue-500
           prose-headings:font-heading prose-headings:font-bold
-          prose-h1:text-3xl
-          prose-h2:text-2xl
-          prose-h3:text-xl
+          prose-h1:text-2xl
+          prose-h2:text-xl
+          prose-h3:text-lg
         "
       />
       <p className="text-md font-heading">~ {blog.authorId.name}</p>

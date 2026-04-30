@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import useAuthStore from "../store/userAuthStore";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
+import Loading from "../components/Loading";
 
 const MyBlogs = () => {
   const myBlogs = useBlogStore((state) => state.myBlogs);
@@ -20,9 +21,7 @@ const MyBlogs = () => {
       </Helmet>
       {myBlogsLoading ? (
         <div className="text-center my-auto">
-          <p className="text-gray-500 font-serif tracking-widest uppercase text-sm animate-pulse">
-            Loading...
-          </p>
+          <Loading />
         </div>
       ) : (
         <>
