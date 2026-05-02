@@ -81,9 +81,6 @@ const About = () => {
               <li>
                 Cloudinary <span className="">(Image Hosting)</span>
               </li>
-              <li>
-                Nodemailer <span className="">(Verification)</span>
-              </li>
             </ul>
           </div>
           <div className="bg-blue-500"></div>

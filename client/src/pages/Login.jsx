@@ -46,7 +46,7 @@ const Login = () => {
       <Helmet>
         <title>Blogspot &bull; Login</title>
       </Helmet>
-      <h1 className="text-2xl font-heading font-bold">Welcome Back</h1>
+      <h1 className="text-2xl font-heading font-bold">Log in to Blogspot</h1>
       {errors && <p className="text-sm text-red-500">{errors}</p>}
       <form onSubmit={handleSubmit} className="flex flex-col gap-2">
         <div className="flex flex-col gap-0.5">

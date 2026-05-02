@@ -4,7 +4,6 @@ const verifyToken = require("../middlewares/verifyToken");
 const router = express.Router();
 
 router.post("/signup", authController.signUp);
-router.get("/verify/:verificationToken", authController.verifyUser);
 router.post("/login", authController.login);
 router.get("/me", verifyToken, authController.getMe);
 

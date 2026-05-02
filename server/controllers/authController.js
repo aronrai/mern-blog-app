@@ -27,7 +27,7 @@ const signUp = async (req, res, next) => {
     });
     res.status(201).json({
       success: true,
-      message: "Account created successfully.",
+      message: "Account created successfully, Please Login.",
       data: user,
     });
   } catch (err) {
@@ -86,3 +86,5 @@ const getMe = async (req, res, next) => {
     next(err);
   }
 };
+
+module.exports = { signUp, login, getMe };

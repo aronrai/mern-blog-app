@@ -26,24 +26,11 @@ const userSchema = new mongoose.Schema(
       required: [true, "Password is a required field"],
       minlength: [8, "Password must be at least 8 characters long"],
     },
-    isVerified: {
-      type: Boolean,
-      default: false,
-    },
-    verificationToken: {
-      type: String,
-      trim: true,
-    },
   },
   {
     timestamps: true,
   },
 );
-
-// userSchema.index(
-//   { createdAt: 1 },
-//   { expireAfterSeconds: 120, partialFilterExpression: { isVerified: false } },
-// );
 
 userSchema.pre("save", async function () {
   if (this.isModified("password")) {

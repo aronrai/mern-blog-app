@@ -13,8 +13,7 @@ import useAuthStore from "./store/userAuthStore";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 import Blog from "./pages/Blog";
 import About from "./pages/About";
-import SCrollToTop from "./components/ScrollToTop";
-import VerifyAccount from "./pages/VerifyAccount";
+import ScrollToTop from "./components/ScrollToTop";
 import EditBlog from "./pages/EditBlog";
 import Loading from "./components/Loading";
 
@@ -30,7 +29,7 @@ const App = () => {
   }, [fetchBlogs, page]);
   return (
     <>
-      <SCrollToTop />
+      <ScrollToTop />
       <Header />
       {
         <main className="overflow-x-hidden">
@@ -40,10 +39,6 @@ const App = () => {
             <Route path="/:slug" element={<Blog />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<SignUp />} />
-            <Route
-              path="/verify/:verification-token"
-              element={<VerifyAccount />}
-            />
             <Route element={<ProtectedRoutes />}>
               <Route path="/my-blogs" element={<MyBlogs />} />
               <Route path="/write-blog" element={<WriteBlog />} />

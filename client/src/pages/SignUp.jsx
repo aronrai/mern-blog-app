@@ -10,8 +10,8 @@ const SignUp = () => {
     password: "",
     confirmPassword: "",
   });
-  const [emailMessage, setEmailMessage] = useState(null);
-  const [errors, setErrors] = useState(null);
+  const [message, setMessage] = useState(null);
+  const [error, setError] = useState(false);
   const [signingUp, setSigningUp] = useState(false);
   const handleFormDataChange = (e) => {
     const { name, value } = e.target;
@@ -26,14 +26,15 @@ const SignUp = () => {
         name.length === 0 ||
         email.length === 0 ||
         password.length === 0 ||
-        confirmPassword.length === 0
+        confirmPassword.length === 0 ||
+        password !== confirmPassword
       )
-        throw new Error("Please fill all the details");
+        throw new Error("Passwords did not match.");
       setSigningUp(true);
       const response = await api.post("/users/signup", formData);
       const data = response.data;
-      setErrors(null);
-      setEmailMessage(data.message);
+      setError(false);
+      setMessage(data.message);
       setFormData({
         name: "",
         email: "",
@@ -41,8 +42,8 @@ const SignUp = () => {
         confirmPassword: "",
       });
     } catch (err) {
-      setErrors(err.response.data.message);
-      console.log(err.response.data);
+      setError(true);
+      setMessage(err.response?.data?.message || err.message);
     } finally {
       setSigningUp(false);
     }
@@ -53,8 +54,11 @@ const SignUp = () => {
         <title>Blogspot &bull; Signup</title>
       </Helmet>
       <h1 className="text-2xl font-heading font-bold">Create an account</h1>
-      {emailMessage && <p className="text-sm text-blue-500">{emailMessage}</p>}
-      {errors && <p className="text-sm text-red-500">{errors}</p>}
+      {message && (
+        <p className={`text-sm ${error ? "text-red-500" : "text-blue-500"}`}>
+          {message}
+        </p>
+      )}
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-2 w-full max-w-75"
