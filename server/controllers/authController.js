@@ -30,8 +30,10 @@ const signUp = async (req, res, next) => {
       verificationToken,
     });
     try {
+      console.log("Sending email...");
       await sendVerificationEmail(name, email, verificationToken);
     } catch (err) {
+      console.log(err);
       await User.findByIdAndDelete(newUser._id);
       return next(
         new CustomError(
