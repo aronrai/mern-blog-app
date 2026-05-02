@@ -22,24 +22,40 @@ const signUp = async (req, res, next) => {
     if (existingUser) {
       return next(new CustomError("Email is already registered", 400));
     }
+    // const verificationToken = crypto.randomBytes(32).toString("hex");
+    // await User.create({
+    //   name,
+    //   email,
+    //   password,
+    //   verificationToken,
+    // });
+    // try {
+    //   await sendVerificationEmail(name, email, verificationToken);
+    // } catch (err) {
+    //   return next(
+    //     new CustomError(
+    //       "Account created, but we couldn't send the verification email. Please try again in a few minutes.",
+    //       500,
+    //     ),
+    //   );
+    // }
     const verificationToken = crypto.randomBytes(32).toString("hex");
-    console.log(verificationToken);
+    try {
+      await sendVerificationEmail(name, email, verificationToken);
+    } catch (err) {
+      return next(
+        new CustomError(
+          "Failed to send verification email. Please try again in a few minutes.",
+          500,
+        ),
+      );
+    }
     await User.create({
       name,
       email,
       password,
       verificationToken,
     });
-    try {
-      await sendVerificationEmail(name, email, verificationToken);
-    } catch (err) {
-      return next(
-        new CustomError(
-          "Account created, but we couldn't send the verification email. Please try again in a few minutes.",
-          500,
-        ),
-      );
-    }
     res.status(201).json({
       success: true,
       message:
