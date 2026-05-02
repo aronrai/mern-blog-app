@@ -1,10 +1,8 @@
 const User = require("../models/user");
 const CustomError = require("../utils/customError");
 const { signUpSchema, loginSchema } = require("../validations/authSchema");
-const crypto = require("crypto");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const { sendVerificationEmail } = require("../utils/sendEmail");
 require("dotenv").config();
 
 const signUp = async (req, res, next) => {
@@ -20,30 +18,17 @@ const signUp = async (req, res, next) => {
     const { name, email, password } = value;
     const existingUser = await User.findOne({ email });
     if (existingUser) {
-      return next(new CustomError("Email is already registered", 400));
+      return next(new CustomError("Email is already registered.", 400));
     }
-    const verificationToken = crypto.randomBytes(32).toString("hex");
-    const newUser = await User.create({
+    const user = await User.create({
       name,
       email,
       password,
-      verificationToken,
     });
-    try {
-      await sendVerificationEmail(name, email, verificationToken);
-    } catch (err) {
-      await User.findByIdAndDelete(newUser._id);
-      return next(
-        new CustomError(
-          "Could not send verification email. Please try again in a few minutes.",
-          500,
-        ),
-      );
-    }
     res.status(201).json({
       success: true,
-      message:
-        "Account created successfully. Please check your email to verify your account.",
+      message: "Account created successfully.",
+      data: user,
     });
   } catch (err) {
     next(err);
@@ -65,11 +50,6 @@ const login = async (req, res, next) => {
     if (!user) {
       return next(new CustomError("Invalid email or password.", 401));
     }
-    if (!user.isVerified) {
-      return next(
-        new CustomError("Please verify your email before logging in.", 403),
-      );
-    }
     const isPasswordValid = await bcrypt.compare(password, user.password);
     if (!isPasswordValid) {
       return next(new CustomError("Invalid email or password.", 401));
@@ -82,7 +62,7 @@ const login = async (req, res, next) => {
     });
     res.json({
       success: true,
-      message: "Logged in successfully",
+      message: "Logged in successfully.",
       data: userData,
       token,
     });
@@ -96,7 +76,7 @@ const getMe = async (req, res, next) => {
     const id = req.userId;
     const user = await User.findById(id).select("-password -__v");
     if (!user) {
-      return next(new CustomError("User not found", 404));
+      return next(new CustomError("User not found.", 404));
     }
     res.json({
       success: true,
@@ -106,29 +86,3 @@ const getMe = async (req, res, next) => {
     next(err);
   }
 };
-
-const verifyUser = async (req, res, next) => {
-  try {
-    const { verificationToken } = req.params;
-    const user = await User.findOne({ verificationToken });
-    if (!user) {
-      return next(
-        new CustomError(
-          "The provided token is invalid. Please ensure you haven't modified the URL.",
-          400,
-        ),
-      );
-    }
-    user.isVerified = true;
-    user.verificationToken = undefined;
-    await user.save();
-    res.json({
-      success: true,
-      message: "Account verified. Please Login.",
-    });
-  } catch (err) {
-    next(err);
-  }
-};
-
-module.exports = { signUp, login, getMe, verifyUser };
