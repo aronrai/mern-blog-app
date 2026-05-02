@@ -53,7 +53,7 @@ const Blog = () => {
   }
 
   return (
-    <section className="px-4 sm:px-8 md:px-32 lg:px-48 py-16 flex flex-col gap-8 min-h-[calc(100vh-96px)]">
+    <section className="px-4 sm:px-8 md:px-32 lg:px-48 py-16 flex flex-col gap-8 min-h-[calc(100vh-96px)] w-full">
       <Link to="/">
         <button>
           <IoMdArrowRoundBack className="text-xl cursor-pointer" />
@@ -81,7 +81,7 @@ const Blog = () => {
       <div
         dangerouslySetInnerHTML={{ __html: blog.content }}
         className="
-          prose **:wrap-break-word max-w-none
+          prose wrap-break-word max-w-none
           prose-p:text-sm
           prose-li:text-sm
           prose-em:text-xl prose-em:font-montez
