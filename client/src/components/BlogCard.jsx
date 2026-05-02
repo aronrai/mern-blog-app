@@ -38,7 +38,15 @@ const BlogCard = ({ blog, user }) => {
             {title}
           </h3>
           <div
-            dangerouslySetInnerHTML={{ __html: content.slice(0, 200) }}
+            dangerouslySetInnerHTML={{
+              __html:
+                content
+                  .replace(/<[^>]*>/g, " ")
+                  .replace(/&nbsp;/g, " ")
+                  .replace(/\s+/g, " ")
+                  .trim()
+                  .slice(0, 150) + "...",
+            }}
             className="text-sm text-gray-600"
           />
           <p className="text-sm font-medium">
@@ -96,7 +104,7 @@ const BlogCard = ({ blog, user }) => {
             {tags.map((tag) => (
               <span
                 key={tag}
-                className="text-sm text-gray-700 bg-gray-200 px-2 py-0.5 rounded-full"
+                className="text-sm font-heading bg-gray-200 rounded-full px-2 py-0.5"
               >
                 {tag}
               </span>
@@ -106,10 +114,18 @@ const BlogCard = ({ blog, user }) => {
             {title}
           </h3>
           <div
-            dangerouslySetInnerHTML={{ __html: content.slice(0, 200) }}
-            className="text-sm text-gray-600"
+            dangerouslySetInnerHTML={{
+              __html:
+                content
+                  .replace(/<[^>]*>/g, " ")
+                  .replace(/&nbsp;/g, " ")
+                  .replace(/\s+/g, " ")
+                  .trim()
+                  .slice(0, 150) + "...",
+            }}
+            className="wrap-break-word max-w-none text-sm text-gray-600"
           />
-          <p className="text-sm font-medium">
+          <p className="text-md font-heading">
             {authorId.name} &bull; {formatDate(createdAt)} &bull; {read} min
             read
           </p>
