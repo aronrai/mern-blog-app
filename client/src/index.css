@@ -1,4 +1,7 @@
 @import "tailwindcss";
+@import "@fontsource-variable/montserrat/wght.css";
+@import "@fontsource/montez";
+@import "@fontsource-variable/playfair-display/wght.css";
 @plugin "@tailwindcss/typography";
 html,
 body {
