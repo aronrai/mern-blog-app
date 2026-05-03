@@ -124,7 +124,7 @@ const Header = () => {
                 </Link>
               </li>
             </>
-          ) : (
+          ) : userLoading ? null : (
             <>
               <li>
                 <Link to="/login" onClick={toggleMenu}>
