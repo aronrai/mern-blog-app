@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import useBlogStore from "../store/useBlogStore";
 import formatDate from "../utils/formatDate";
 import { IoMdArrowRoundBack } from "react-icons/io";
@@ -11,6 +11,8 @@ const Blog = () => {
   const allBlogs = useBlogStore((state) => state.allBlogs);
   const [blog, setBlog] = useState(allBlogs.find((blog) => blog.slug === slug));
   const [loading, setLoading] = useState(!blog);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (!blog) {
@@ -54,11 +56,9 @@ const Blog = () => {
 
   return (
     <section className="px-4 sm:px-8 md:px-32 lg:px-48 py-16 flex flex-col gap-8 min-h-[calc(100vh-96px)] w-full">
-      <Link to="/">
-        <button>
-          <IoMdArrowRoundBack className="text-xl cursor-pointer" />
-        </button>
-      </Link>
+      <button onClick={() => navigate(-1)}>
+        <IoMdArrowRoundBack className="text-xl cursor-pointer" />
+      </button>
       <h1 className="text-4xl font-heading font-bold">{blog.title}</h1>
       <p className="text-md font-heading">
         {formatDate(blog.createdAt)} &bull; {blog.read} min read
